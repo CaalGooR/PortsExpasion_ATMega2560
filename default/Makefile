@@ -35,7 +35,7 @@ HEX_EEPROM_FLAGS += --change-section-lma .eeprom=0 --no-change-warnings
 
 
 ## Objects that must be built in order to link
-OBJECTS = 74LS259_uC.o 
+OBJECTS = 74LS259_uC.o 74LS259.o UART.o Utility.o 
 
 ## Objects explicitly added by the user
 LINKONLYOBJECTS = 
@@ -45,6 +45,15 @@ all: $(TARGET) 74LS259_uC.hex 74LS259_uC.eep 74LS259_uC.lss size
 
 ## Compile
 74LS259_uC.o: ../74LS259_uC.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+74LS259.o: ../74LS259.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+UART.o: ../UART.c
+	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
+
+Utility.o: ../Utility.c
 	$(CC) $(INCLUDES) $(CFLAGS) -c  $<
 
 ##Link
